@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-lg-9">
+    {% for foo in messages %}
+        <div class="alert {{ foo.tags }}  alert-dismissible fade show " role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ foo }}
+        </div>
+    {% endfor %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Upload Students Data</div>
+            <div class="card-body">
+                <form action="{% url 'upload_data' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="small text-muted" for="">Upload Excel File(.xlsx)</label>
+                        <input type="file" class="form-control" name="upload_file">
+                    </div>
+                    {% for form in student %}
+                                <div class="form-group">
+                                {{ form.label_tag }}
+                                {{ form }}
+                                    <label for="" class="text-danger">{{ form.errors }}</label>
+                                </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-block btn-success">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Upload Questions Data</div>
+            <div class="card-body">
+                <form action="{% url 'upload_questions' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="small text-muted" for="">Upload Excel File(.xlsx)</label>
+                        <input type="file" class="form-control" name="upload_questions">
+                    </div>
+                    {% for form in question %}
+                                <div class="form-group">
+                                {{ form.label_tag }}
+                                {{ form }}
+                                    <label for="" class="text-danger">{{ form.errors }}</label>
+                                </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-block btn-success">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

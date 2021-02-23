@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-lg-10">
+            {% for foo in messages %}
+                                <div class="alert {{ foo.tags }}  alert-dismissible fade show " role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ foo }}
+                                </div>
+                        {% endfor %}
+            <div class="card">
+            <div class="card-header">Questions</div>
+                <div class="card-body small">
+                    <table class="table table-hover ">
+                        <tr>
+                            <th>Questions</th>
+                            <th>Section</th>
+                            <th>Subject</th>
+                            <th>Branch</th>
+                            <th>Exam</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for q in questions %}
+                            <tr>
+                            <td>{{ q.questions }}</td>
+                            <td>{{ q.section }}</td>
+                            <td>{{ q.subject_id.subject_name }}</td>
+                            <td>{{ q.branch_id.branch_name }}</td>
+                            <td>{{ q.exam_id.exam_name }}</td>
+                            <td>
+                                <a href="{% url 'question_view' q.slug %}" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                                <a href="{% url 'question_delete' q.slug %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                            </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7"><div class="alert alert-danger h6 text-center p-3" role="alert">No questions availables!</div></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+    </div>
+{% endblock %}

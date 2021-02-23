@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-lg-10">
+        <div class="card">
+            <div class="card-header">
+                 <div class="form-inline">
+            <span class="">College Details</span>
+            <a href="{% url 'update_college' college.0.slug %}" class="m-0 p-0 ml-auto"><i class="fas fa-edit fa-lg text-primary"></i></a>
+        </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-responsive-sm">
+                    <tr class="small">
+                        <th>College Name</th>
+                        <td>{{college.0.college_name}}</td>
+                    </tr>
+                    <tr class="small">
+                        <th>Email</th>
+                        <td>{{ user.0.email }}</td>
+                    </tr>
+                    <tr class="small">
+                        <th>Contact</th>
+                        <td>{{ college.0.college_contact }}</td>
+                    </tr>
+                    <tr class="small">
+                        <th>University</th>
+                        <td>{{ college.0.college_university }}</td>
+                    </tr>
+                    <tr class="small">
+                        <th>College Code</th>
+                        <td>{{ college.0.college_code }}</td>
+                    </tr>
+                    <tr class="small">
+                        <th>Address</th>
+                        <td>{{college.0.college_address}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</div>
+{% endblock %}
